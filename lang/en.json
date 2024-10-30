@@ -1,0 +1,345 @@
+{
+  "DBU": {
+    "Ability": {
+      "Agility": {
+        "long": "Agility",
+        "abbr": "AG"
+      },
+      "Force": {
+        "long": "Force",
+        "abbr": "FO"
+      },
+      "Tenacity": {
+        "long": "Tenacity",
+        "abbr": "TE"
+      },
+      "Scholarship": {
+        "long": "Scholarship",
+        "abbr": "SC"
+      },
+      "Insight": {
+        "long": "Insight",
+        "abbr": "IN"
+      },
+      "Magic": {
+        "long": "Magic",
+        "abbr": "MA"
+      },
+      "Personality": {
+        "long": "Personality",
+        "abbr": "PE"
+      }
+    },
+    "Aptitudes": {
+      "Haste": {
+        "label": "Haste"
+      },
+      "DefenseValue": {
+        "label": "Defense Value"
+      },
+      "NormalSpeed": {
+        "label": "Normal Speed"
+      },
+      "BoostedSpeed": {
+        "label": "Boosted Speed"
+      },
+      "Initiative": {
+        "label": "Initiative"
+      },
+      "Might": {
+        "label": "Might",
+        "Clash": {
+          "label": "Might (Clash)"
+        }
+      },
+      "SuperStacks": {
+        "label": "Super Stacks"
+      },
+      "Soak": {
+        "label": "Soak"
+      },
+      "Awareness": {
+        "label": "Awareness"
+      },
+      "HoldingBack": {
+        "label": "Holding Back"
+      },
+      "DamageReduction": {
+        "label": "Damage Red."
+      }
+    },
+    "HealthThresholds": {
+      "label": "Health Thresholds",
+      "Steadfast": {
+        "label": "Steadfast Check"
+      },
+      "Thresholds": {
+        "Healthy": {
+          "label": "Healthy"
+        },
+        "Bruised": {
+          "label": "Bruised"
+        },
+        "Injured": {
+          "label": "Injured"
+        },
+        "Critical": {
+          "label": "Critical"
+        }
+      }
+    },
+    "SavingThrows": {
+      "label": "Saving Throws",
+      "Impulsive": {
+        "label": "Impulsive"
+      },
+      "Corporeal": {
+        "label": "Corporeal"
+      },
+      "Cognitive": {
+        "label": "Cognitive"
+      },
+      "Morale": {
+        "label": "Morale"
+      }
+    },
+    "Skills": {
+      "acrobatics": {
+        "label": "Acrobatics"
+      },
+      "pilot": {
+        "label": "Pilot"
+      },
+      "thievery": {
+        "label": "Thievery"
+      },
+      "stealth": {
+        "label": "Stealth"
+      },
+      "craftItem": {
+        "label": "Craft (Basic Items)"
+      },
+      "craftApparel": {
+        "label": "Craft (Apparel)"
+      },
+      "craftWeapons": {
+        "label": "Craft (Weapons)"
+      },
+      "craftVehicles": {
+        "label": "Craft (Vehicles)"
+      },
+      "knowledgeScience" : {
+        "label": "Knowledge (Science)"
+      },
+      "knowledgeProfession" : {
+        "label": "Knowledge (Profession)"
+      },
+      "knowledgeHistory" : {
+        "label": "Knowledge (History)"
+      },
+      "knowledgeDynamic" : {
+        "label": "Knowledge (Dynamic)"
+      },
+      "investigation": {
+        "label": "Investigation"
+      },
+      "medicine": {
+        "label": "Medicine"
+      },
+      "clairvoyance": {
+        "label": "Clairvoyance"
+      },
+      "concealment": {
+        "label": "Concealment"
+      },
+      "creatureHandling": {
+        "label": "Creature Handling"
+      },
+      "perception": {
+        "label": "Perception"
+      },
+      "intuition": {
+        "label": "Intuition"
+      },
+      "survival": {
+        "label": "Survival"
+      },
+      "useMagic": {
+        "label": "Use Magic"
+      },
+      "bluff": {
+        "label": "Bluff"
+      },
+      "intimidation": {
+        "label": "Intimidation"
+      },
+      "persuasion": {
+        "label": "Persuasion"
+      },
+      "performancePosing": {
+        "label": "Performance (Posing)"
+      },
+      "performanceMusic": {
+        "label": "Performance (Music)"
+      },
+      "performanceDancing": {
+        "label": "Performance (Dancing)"
+      },
+      "performanceDynamic": {
+        "label": "Performance (Dynamic)"
+      }
+    },
+    "SheetLabels": {
+      "Actor": "Dbu Actor Sheet",
+      "Item": "Dbu Item Sheet"
+    },
+    "Maneuvers": {
+      "Surge": {
+        "Healing": {
+          "label": "Healing Surge"
+        },
+        "Power": {
+          "label": "Power Surge"
+        }
+      }
+    },
+    "CombatRolls": {
+      "label": "Combat Rolls",
+      "Rolls": {
+        "Strike": {
+          "label": "Strike"
+        },
+        "Dodge": {
+          "label": "Dodge"
+        },
+        "Wound": {
+          "Physical": {
+            "label": "Wound (Phy.)"
+          },
+          "Energy": {
+            "label": "Wound (Ene.)"
+          },
+          "Magic": {
+            "label": "Wound (Magic)"
+          }
+        }
+      }
+    },
+    "Actor": {
+      "Tabs": {
+        "Biography": "Biography",
+        "Character": "Character",
+        "Gear": "Gear",
+        "Spells": "Spells",
+        "Effects": "Effects"
+      },
+      "base": {
+        "FIELDS": {
+          "biography": {
+            "label": "Biography"
+          },
+          "health": {
+            "value": {
+              "label": "Life Points"
+            },
+            "max": {
+              "label": "Maximum Life Points"
+            }
+          },
+          "ki": {
+            "value": {
+              "label": "Ki Points"
+            },
+            "max": {
+              "label": "Maximum Ki Points"
+            }
+          },
+          "capacity": {
+            "value": {
+              "label": "Capacity Rate"
+            },
+            "max": {
+              "label": "Maximum Capacity Rate"
+            }
+          }
+        }
+      },
+      "Character": {
+        "FIELDS": {
+          "attributes.level.value": {
+            "label": "Power Level"
+          },
+          "tierOfPower": {
+            "label": "Tier of Power"
+          }
+        }
+      },
+      "NPC": {
+        "FIELDS": {
+          "cr": {
+            "label": "CR"
+          }
+        },
+        "xp": {
+          "label": "XP"
+        }
+      }
+    },
+    "Item": {
+      "Tabs": {
+        "Attributes": "Attributes",
+        "Description": "Description",
+        "Effects": "Effects"
+      },
+      "Gear": {
+        "FIELDS": {
+          "rollFormula": {
+            "label": "Roll Formula"
+          },
+          "numDice": {
+            "label": "Number of Dice"
+          },
+          "dieSize": {
+            "label": "Die Size"
+          },
+          "rollMod": {
+            "label": "Roll Modifier"
+          },
+          "quantity": {
+            "label": "Quantity"
+          },
+          "weight": {
+            "label": "Weight"
+          }
+        }
+      },
+      "Spell": {
+        "FIELDS": {
+          "level": {
+            "label": "Spell Level"
+          }
+        },
+        "SpellLVL": "Level {level} Spells",
+        "AddLVL": "Add LVL {level}"
+      }
+    },
+    "Effect": {
+      "Source": "Source",
+      "Toggle": "Toggle Effect",
+      "Temporary": "Temporary Effects",
+      "Passive": "Passive Effects",
+      "Inactive": "Inactive Effects"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "gear": "Gear",
+      "feature": "Feature",
+      "spell": "Spell"
+    }
+  }
+}

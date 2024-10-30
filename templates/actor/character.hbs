@@ -1,0 +1,263 @@
+{{! Character Tab }}
+<section class='tab character {{tab.cssClass}}' data-group='primary' data-tab='character'>
+  <section class='grid grid-3col'>
+    <aside class='sidebar'>
+      {{! The grid classes are defined in scss/global/_grid.scss. To use,
+      use both the "grid" and "grid-Ncol" class where "N" can be any number
+      from 1 to 12 and will create that number of columns. }}
+      <div class='abilities flexcol'>
+        {{#each system.abilities as |ability key|}}
+        <div class='ability flexrow flex-group-center'>
+          <label class='resource-label rollable flexlarge align-left' data-action='roll'
+            data-roll='d10+@abilities.{{key}}.mod'
+            data-label='{{localize (lookup @root.config.abilities key)}}'>{{localize
+            (lookup @root.config.abilities
+            key)}}</label>
+          <input type='text' style="height: 50%;" name='system.abilities.{{key}}.value' value='{{ability.value}}' class="ability-score"
+            data-dtype='Number' />
+          <span class='ability-mod rollable' data-action='roll' data-roll='d10+@abilities.{{key}}.mod'
+            data-label='{{localize (lookup @root.config.abilities key)}}'>{{numberFormat
+            ability.mod decimals=0
+            sign=true}}</span>
+        </div>
+        {{/each}}
+      </div>
+
+      <hr>
+
+      <div class='abilities flexcol'>
+        {{#each system.skills as |skill key|}}
+        <div class='ability flexrow flex-group-center'>
+          <label class='resource-label rollable flexlarge align-left' data-action='roll'
+            data-roll='d10+@skills.{{key}}.value' data-label='{{localize (concat 'DBU.Skills.' key '.label')}}'>
+            {{localize (concat 'DBU.Skills.' key '.label')}}</label>
+
+          <input style="height: 50%;" type='text' name='system.skills.{{key}}.rank' value='{{skill.rank}}' class="ability-score"
+            data-dtype='Number' />
+
+          <span class='ability-mod rollable' data-action='roll' data-roll='d10+@skills.{{key}}.value'
+            data-label='{{localize (concat ' DBU.Skills.' key '.label' )}}'>{{numberFormat skill.value decimals=0
+            sign=true}}</span>
+        </div>
+        {{/each}}
+      </div>
+    </aside>
+
+    {{! For the main character list, span the right two columns }}
+    <section class='main grid-span-2'>
+
+      <h1>Misc. Combat Information</h1>
+
+      <div class="grid grid-5col">
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.SuperStacks.label'}}'>{{localize
+            'DBU.Aptitudes.SuperStacks.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.SuperStacks.label'}}'
+            value='{{system.superStacks}}' data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          {{#if (eq system.might system.mightForClash)}}
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.Might.label'}}'>{{localize
+            'DBU.Aptitudes.Might.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.Might.label'}}' value='{{system.might}}'
+            data-dtype='Number' />
+          {{else}}
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.Might.Clash.label'}}'>{{localize
+            'DBU.Aptitudes.Might.Clash.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.Might.Clash.label'}}'
+            value='{{system.might}} ({{system.mightForClash}})' data-dtype='Number' />
+          {{/if}}
+          {{!-- <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.Might.label'}}'
+            value='{{system.might}}' data-dtype='Number' /> --}}
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.Soak.label'}}'>{{localize
+            'DBU.Aptitudes.Soak.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.Soak.label'}}' value='{{system.soak}}'
+            data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Maneuvers.Surge.Healing.label'}}'>{{localize
+            'DBU.Maneuvers.Surge.Healing.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='{{system.healingSurgeDice}}' data-label='{{localize (concat ' DBU.Maneuvers.Surge.Healing.label'
+            )}}'>{{system.healingSurgeDice}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Maneuvers.Surge.Power.label'}}'>{{localize
+            'DBU.Maneuvers.Surge.Power.label'}}</label>
+          <span class='ability-mod align-center' style='display: flex; font-size: large;'
+            data-label='{{localize (concat ' DBU.Maneuvers.Surge.Power.label' )}}'>{{numberFormat
+            system.powerSurgeAmount decimals=0
+            sign=true}}</span>
+        </div>
+
+      </div>
+
+      <div class="grid grid-5col">
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.NormalSpeed.label'}}'>{{localize
+            'DBU.Aptitudes.NormalSpeed.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.NormalSpeed.label'}}'
+            value='{{system.normalSpeed}}' data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.BoostedSpeed.label'}}'>{{localize
+            'DBU.Aptitudes.BoostedSpeed.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.BoostedSpeed.label'}}'
+            value='{{system.boostedSpeed}}' data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.DamageReduction.label'}}'>{{localize
+            'DBU.Aptitudes.DamageReduction.label'}}</label>
+          <input type='text' disabled='true' name='{{localize ' DBU.Aptitudes.DamageReduction.label'}}'
+            value='{{system.damageReduction}}' data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.HoldingBack.label'}}'>{{localize
+            'DBU.Aptitudes.HoldingBack.label'}}</label>
+          <input type='text' name='system.attributes.holdingBackAmount.value'
+            value='{{system.attributes.holdingBackAmount.value}}' data-dtype='Number' />
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.Aptitudes.Initiative.label'}}'>{{localize
+            'DBU.Aptitudes.Initiative.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='{{system.initiativeDice}}' data-label='{{localize (concat ' DBU.Aptitudes.Initiative.label'
+            )}}'>{{numberFormat system.initiative decimals=0
+            sign=true}}</span>
+        </div>
+
+      </div>
+
+      <h1>{{localize 'DBU.SavingThrows.label'}}</h1>
+
+      <div class="grid grid-4col">
+        {{#each system.savingThrows as |savingThrow key|}}
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize (concat ' DBU.SavingThrows.' savingThrow.label '.label'
+            )}}'>{{localize (concat 'DBU.SavingThrows.'
+            savingThrow.label '.label')}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='{{../system.savingThrowDice}}+{{savingThrow.value}}' data-label='{{localize (concat '
+            DBU.SavingThrows.' savingThrow.label '.label' )}}'>{{numberFormat savingThrow.value decimals=0
+            sign=true}}</span>
+        </div>
+        {{/each}}
+      </div>
+
+      <h1>{{localize 'DBU.CombatRolls.label'}}</h1>
+
+      <div class="grid grid-5col">
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.CombatRolls.Rolls.Strike.label'}}'>{{localize
+            'DBU.CombatRolls.Rolls.Strike.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='d10+{{system.strike}}' data-label='{{localize '
+            DBU.CombatRolls.Rolls.Strike.label'}}'>{{numberFormat
+            system.strike decimals=0
+            sign=true}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.CombatRolls.Rolls.Dodge.label'}}'>{{localize
+            'DBU.CombatRolls.Rolls.Dodge.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='d10+{{system.dodge}}' data-label='{{localize '
+            DBU.CombatRolls.Rolls.Dodge.label'}}'>{{numberFormat
+            system.dodge decimals=0
+            sign=true}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize '
+            DBU.CombatRolls.Rolls.Wound.Physical.label'}}'>{{localize
+            'DBU.CombatRolls.Rolls.Wound.Physical.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='d10+{{system.physicalWound}}' data-label='{{localize '
+            DBU.CombatRolls.Rolls.Wound.Physical.label'}}'>{{numberFormat
+            system.physicalWound decimals=0
+            sign=true}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.CombatRolls.Rolls.Wound.Energy.label'}}'>{{localize
+            'DBU.CombatRolls.Rolls.Wound.Energy.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='d10+{{system.energyWound}}' data-label='{{localize '
+            DBU.CombatRolls.Rolls.Wound.Energy.label'}}'>{{numberFormat
+            system.energyWound decimals=0
+            sign=true}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label" data-label='{{localize ' DBU.CombatRolls.Rolls.Wound.Magic.label'}}'>{{localize
+            'DBU.CombatRolls.Rolls.Wound.Magic.label'}}</label>
+          <span class='ability-mod rollable align-center' style='display: flex; font-size: large;' data-action='roll'
+            data-roll='d10+{{system.magicWound}}' data-label='{{localize '
+            DBU.CombatRolls.Rolls.Wound.Magic.label'}}'>{{numberFormat
+            system.magicWound decimals=0
+            sign=true}}</span>
+        </div>
+
+      </div>
+
+      <h1>Health Thresholds</h1>
+
+      <div class="grid grid-4col">
+
+        <div class='resource-content flex-group-center'>
+          <label class="resource-label rollable" data-action='roll' data-roll='{{system.steadfastDice}}'
+            data-label='{{localize ' DBU.HealthThresholds.Steadfast.label'}}'>{{localize
+            'DBU.HealthThresholds.label'}}</label>
+          <span class='ability-mod align-center' style='display: flex; font-size: large;'
+            data-label='{{localize (concat ' DBU.HealthThresholds.Thresholds.{{system.currentHealthThreshold}}.label'
+            )}}'>{{localize (concat 'DBU.HealthThresholds.Thresholds.' system.currentHealthThreshold '.label'
+            )}}</span>
+        </div>
+
+        <div class='resource-content flex-group-center' style="font-size: large; text-align: center;">
+          <label class="resource-label" data-label='{{localize '
+            DBU.HealthThresholds.Thresholds.Bruised.label'}}'>{{localize
+            'DBU.HealthThresholds.Thresholds.Bruised.label'}}</label>
+
+          <input class="align-center" type="checkbox" name='system.thresholds.hasPassedBruised.value'
+            data-dtype='Boolean' style='display: flex; margin-right: auto; margin-left: auto;' {{checked
+            system.thresholds.hasPassedBruised.value}}>
+        </div>
+
+        <div class='resource-content flex-group-center' style="font-size: large; text-align: center;">
+          <label class="resource-label" data-label='{{localize '
+            DBU.HealthThresholds.Thresholds.Injured.label'}}'>{{localize
+            'DBU.HealthThresholds.Thresholds.Injured.label'}}</label>
+
+          <input class="align-center" type="checkbox" name='system.thresholds.hasPassedInjured.value'
+            data-dtype='Boolean' style='display: flex; margin-right: auto; margin-left: auto;' {{checked
+            system.thresholds.hasPassedInjured.value}}>
+        </div>
+
+        <div class='resource-content flex-group-center' style="font-size: large; text-align: center;">
+          <label class="resource-label" data-label='{{localize '
+            DBU.HealthThresholds.Thresholds.Critical.label'}}'>{{localize
+            'DBU.HealthThresholds.Thresholds.Critical.label'}}</label>
+
+          <input class="align-center" type="checkbox" name='system.thresholds.hasPassedCritical.value'
+            data-dtype='Boolean' style='display: flex; margin-right: auto; margin-left: auto;' {{checked
+            system.thresholds.hasPassedCritical.value}}>
+        </div>
+
+      </div>
+    </section>
+  </section>
+</section>

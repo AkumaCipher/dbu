@@ -1,0 +1,83 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "htmlFields": ["biography"],
+    "templates": {
+      "base": {
+        "health": {
+          "value": 60,
+          "min": 0,
+          "max": 60
+        },
+        "ki": {
+          "value": 50,
+          "min": 0,
+          "max": 50
+        },
+        "capacity": {
+          "value": 20,
+          "min": 0,
+          "max": 20
+        },
+        "biography": ""
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "attributes": {
+        "level": {
+          "value": 1
+        }
+      },
+      "abilities": {
+        "agility": {
+          "value": 1
+        },
+        "force": {
+          "value": 1
+        },
+        "tenacity": {
+          "value": 1
+        },
+        "scholarship": {
+          "value": 1
+        },
+        "insight": {
+          "value": 1
+        },
+        "magic": {
+          "value": 1
+        },
+        "personality": {
+          "value": 1
+        }
+      }
+    },
+    "npc": {
+      "templates": ["base"],
+      "cr": 0
+    }
+  },
+  "Item": {
+    "types": ["gear", "feature", "spell"],
+    "htmlFields": ["description"],
+    "templates": {
+      "base": {
+        "description": ""
+      }
+    },
+    "gear": {
+      "templates": ["base"],
+      "quantity": 1,
+      "weight": 0,
+      "formula": "d10 + @force.mod + ceil(@lvl / 2)"
+    },
+    "feature": {
+      "templates": ["base"]
+    },
+    "spell": {
+      "templates": ["base"],
+      "spellLevel": 1
+    }
+  }
+}

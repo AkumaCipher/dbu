@@ -1,0 +1,17 @@
+.resource-label {
+  font-weight: bold;
+}
+
+.resource-text {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.ability {
+  margin-bottom: 2px;
+}
+
+.ability-score,
+.ability-mod {
+  flex: 0 0 44px;
+}
