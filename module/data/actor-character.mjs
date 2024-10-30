@@ -35,6 +35,28 @@ export default class DbuCharacter extends DbuActorBase {
       }, {})
     );
 
+    schema.skills = new fields.SchemaField(
+      Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
+        obj[skill] = new fields.SchemaField({
+          value : new fields.NumberField({
+            initial: 0
+          }),
+          rank: new fields.NumberField({
+            initial: 0,
+            min: 0,
+          }),
+        });
+        return obj;
+      }, {})
+    );
+
+/*     this.skills = Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
+      obj[skill] = {
+        value: Math.floor(this.abilities[CONFIG.DBU.skills[skill]].value / 2) + this.skillChecks
+      }
+      return obj;
+    }, {}); */
+
     schema.thresholds = new fields.SchemaField({
       hasPassedBruised: new fields.SchemaField({
         value: new fields.BooleanField({ initial: false }),
@@ -55,9 +77,6 @@ export default class DbuCharacter extends DbuActorBase {
     this.attributes.level.value = Math.min(this.attributes.level.value, this.attributes.level.max);
 
     this.baseTierOfPower = Math.ceil((this.attributes.level.value + 1) / 5);
-  }
-
-  prepareDerivedData() {
 
     this.tierOfPower = Math.max(this.baseTierOfPower - this.attributes.holdingBackAmount.value, 1);
 
@@ -206,30 +225,25 @@ export default class DbuCharacter extends DbuActorBase {
 
     // Skills
 
-    this.skills = Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
-      obj[skill] = {
-        value: Math.floor(this.abilities[CONFIG.DBU.skills[skill]].value / 2) + this.skillChecks
-      }
-      return obj;
-    }, {});
-
     for (const key in this.skills) {
-      // Make sure the scores do not surpass the allowed maximum
-      this.skills[key].rank = 0;
 
-      this.skills[key].value += this.skills[key].rank * 2;
+      this.skills[key].rank = Math.min(this.skills[key].rank, this.baseTierOfPower + 1);
+
+      this.skills[key].value = Math.floor(this.abilities[CONFIG.DBU.skills[key]].value / 2) + this.skillChecks + this.skills[key].rank * 2;
 
     }
-
-    console.log(this.skills);
-
-    // TODO Emcompassing skills
 
     this.healingSurgeDice = `${this.tierOfPower * 2}d10+${this.surgency}`;
 
     this.powerSurgeAmount = Math.floor(this.ki.max / 4) + this.surgency;
 
     this.damageReduction = 0;
+
+  }
+
+  prepareDerivedData() {
+
+    
 
   }
 
