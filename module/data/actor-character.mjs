@@ -38,7 +38,7 @@ export default class DbuCharacter extends DbuActorBase {
     schema.skills = new fields.SchemaField(
       Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
         obj[skill] = new fields.SchemaField({
-          value : new fields.NumberField({
+          value: new fields.NumberField({
             initial: 0
           }),
           rank: new fields.NumberField({
@@ -49,13 +49,6 @@ export default class DbuCharacter extends DbuActorBase {
         return obj;
       }, {})
     );
-
-/*     this.skills = Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
-      obj[skill] = {
-        value: Math.floor(this.abilities[CONFIG.DBU.skills[skill]].value / 2) + this.skillChecks
-      }
-      return obj;
-    }, {}); */
 
     schema.thresholds = new fields.SchemaField({
       hasPassedBruised: new fields.SchemaField({
@@ -243,7 +236,7 @@ export default class DbuCharacter extends DbuActorBase {
 
   prepareDerivedData() {
 
-    
+
 
   }
 
