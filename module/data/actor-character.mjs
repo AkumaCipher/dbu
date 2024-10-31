@@ -38,13 +38,8 @@ export default class DbuCharacter extends DbuActorBase {
     schema.skills = new fields.SchemaField(
       Object.entries(CONFIG.DBU.skills).reduce((obj, [skill, props]) => {
         obj[skill] = new fields.SchemaField({
-          value: new fields.NumberField({
-            initial: 0
-          }),
-          rank: new fields.NumberField({
-            initial: 0,
-            min: 0,
-          }),
+          value: new fields.NumberField({ initial: 0 }),
+          rank: new fields.NumberField({ initial: 0, min: 0 })
         });
         return obj;
       }, {})
@@ -220,10 +215,22 @@ export default class DbuCharacter extends DbuActorBase {
 
     for (const key in this.skills) {
 
-      this.skills[key].rank = Math.min(this.skills[key].rank, this.baseTierOfPower + 1);
+      this.skills[key].rank = Math.min(this.skills[key].rank, this.baseTierOfPower + 1, 5);
 
       this.skills[key].value = Math.floor(this.abilities[CONFIG.DBU.skills[key]].value / 2) + this.skillChecks + this.skills[key].rank * 2;
 
+    }
+
+    this.skillsKnowledgeBonus = 0;
+
+    for (const key in this.skills) {
+      if (key.match(/knowledge.*/)) {
+        this.skillsKnowledgeBonus += Math.floor(this.skills[key].rank / 2);
+      }
+    }
+
+    for (const key in this.skills) {
+      this.skills[key].value += this.skillsKnowledgeBonus;
     }
 
     this.healingSurgeDice = `${this.tierOfPower * 2}d10+${this.surgency}`;
