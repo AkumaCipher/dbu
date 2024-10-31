@@ -224,7 +224,7 @@ export default class DbuCharacter extends DbuActorBase {
     this.skillsKnowledgeBonus = 0;
 
     for (const key in this.skills) {
-      if (key.match(/knowledge.*/)) {
+      if (/knowledge.*/.test(key)) {
         this.skillsKnowledgeBonus += Math.floor(this.skills[key].rank / 2);
       }
     }
